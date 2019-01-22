@@ -25,7 +25,9 @@ For more information about HTML localStorage https://www.w3schools.com/HTML/html
 .NET Core 2.1, Visual Studio 2017, SQL Server, Vue.js
 
 ## Installing
-Open "Package Manager Console" in Visual Studio 2017 and type the following command to run the latest migration with default data.
+Change the database connection string in appsettings.Development.json to your local database connection.
+
+After that, open "Package Manager Console" in Visual Studio 2017 and type the following command to run the latest migration with default data.
 
 ```
 update-database
