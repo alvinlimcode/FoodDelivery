@@ -1,0 +1,75 @@
+﻿@using FoodDelivery.Data.Entities.Foods
+@using FoodDelivery.Core.Extensions
+@{
+    ViewData["Title"] = "Foods";
+}
+
+
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="panel panel-primary sidebar">
+            <div class="panel-heading">
+                <h3 class="panel-title">Categories</h3>
+            </div>
+
+            <foodtypesidebar></foodtypesidebar>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <h2>Foods</h2>
+
+        <div id="foodListingApp" class="row">
+            <div class="col-md-4" v-for="food in foodData">
+                <div class="card" v-on:click="productClicked('/foods/details/' + food.id + '/' + food.seoFriendlyUrl)">
+                    <img class="card-img img-responsive" v-bind:src="'/images/' + food.imageUrl">
+                    <div class="card-body">
+                        <div class="card-title">{{ food.name }}</div>
+                        <div class="card-pricing">
+                            <span>$</span><span>{{ food.price }}</span>
+                        </div>
+                    </div>
+                </div>
+                <button v-bind:data-id="food.id" class="btn btn-success btn-sm btn-block" @@click="addToCart(food)">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+    {
+    <script type="text/javascript">
+        $(function () {
+            var foodListingApp = new Vue({
+                el: "#foodListingApp",
+                data: {
+                    foodData: {},
+                },
+                computed: {
+                    btnSize: function() {
+                        return "btn-sm";
+                    }
+                },
+                methods: {
+                    productClicked: function (url) {
+                        window.location.href = url;
+                    },
+                    addToCart(food) {
+                        food.quantity = 1;
+                        shoppingCartStore.commit('addToCart', food);
+                        shoppingCartStore.commit('saveCart');
+                    }
+                }
+            });
+
+            $.ajax({
+                url: "/api/Foods/AllFoods",
+                success: function (result) {
+                    if (result.isSuccess) {
+                        foodListingApp.foodData = result.data;
+                    }
+                }
+            });
+        });
+    </script>
+}

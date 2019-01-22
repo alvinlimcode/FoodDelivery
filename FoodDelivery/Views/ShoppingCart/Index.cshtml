@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Shopping Cart</h2>
+<p>&nbsp;</p>
+<table id="shoppingCartApp" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th width="10%">Quantity</th>
+            <th>Price ($)</th>
+            <th>Total Price ($)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr v-for="item in cart">
+            <td>
+                {{ item.name }}
+            </td>
+            <td>
+                <input type="number" v-model="item.quantity" class="form-control" />
+            </td>
+            <td>
+                {{ item.price }}
+            </td>
+            <td>
+                {{ item.quantity * item.price }}
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-right">
+                <strong>Total</strong>
+            </td>
+            <td>
+                <span class="shopping-cart-total-amount"><strong>{{ totalPrice() }}</strong></span>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+@section Scripts
+    {
+    <script type="text/javascript">
+        $(function () {
+            var cart = shoppingCartStore.getters.getCart;
+
+            var shoppingCartApp = new Vue({
+                el: "#shoppingCartApp",
+                data: {
+                    cart: cart,
+                },
+                methods: {
+                    totalPrice: function () {
+                        var totalPrice = 0;
+                        for (var index = 0; index < cart.length; index++) {
+                            totalPrice += cart[index].price * cart[index].quantity;
+                        }
+
+                        return totalPrice;
+                    }
+                }
+            });
+
+            
+
+            shoppingCartApp.totalPrice = totalPrice;
+        });
+    </script>
+}

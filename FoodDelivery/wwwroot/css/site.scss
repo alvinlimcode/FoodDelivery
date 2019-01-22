@@ -1,0 +1,110 @@
+﻿$price-color: #f64b14;
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    font-family: "Open Sans", sans-serif;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.product-title {
+    padding: 5px;
+}
+
+.fa-5 {
+    font-size: 23px !important;
+}
+
+.sidebar {
+    margin-top: 20px;
+}
+
+.spacing {
+    margin-top: 20px;
+}
+
+.img-thumbnail {
+    max-height: 140px;
+}
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
+
+.card {
+    margin: 30px 10px 0px 10px;
+    padding: 5px;
+}
+
+.card:hover {
+    cursor: pointer;
+}
+
+.card-title {
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.card-pricing {
+    text-align: center;
+    font-size: 17px;
+    color: #f64b14;
+    font-weight: bold;
+}
+
+.card a {
+    text-decoration: none;
+}
+
+.card-img {
+    height: 150px;
+    margin: auto;
+}
+
+.detail-pricing {
+    font-size: 20px;
+    color: #f64b14;
+    font-weight: bold;
+}
+
+.badge-red {
+    background-color: #f64b14;
+}
+
+.shopping-cart-total-amount {
+    font-size: 25px;
+    color: $price-color;
+}
+

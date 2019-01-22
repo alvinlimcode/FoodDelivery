@@ -1,0 +1,90 @@
+﻿@using FoodDelivery.Data.Entities.Foods
+@using FoodDelivery.Core.Extensions
+
+@model Food
+@{
+    ViewData["Title"] = "Foods - " + Model.Name;
+}
+
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="panel panel-primary sidebar">
+            <div class="panel-heading">
+                <h3 class="panel-title">Categories</h3>
+            </div>
+
+            <foodtypesidebar></foodtypesidebar>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <h1>@Model.Name</h1>
+
+        <div class="row">
+            <div class="col-md-7">
+                <img src="/images/@Model.ImageUrl" class="img-responsive" />
+
+            </div>
+
+            <div class="col-md-5">
+                <div class="panel panel-default">
+                    <div id="cartApp" class="panel-body">
+                        <p>
+                            @Model.ShortDescription
+                        </p>
+                        <div class="spacing"></div>
+                        <div class="detail-pricing">
+                            <span>$</span><span>@Model.Price</span>
+                        </div>
+                        <div class="spacing"></div>
+                        <div>
+                            <strong>Quantity</strong> <input v-model="item.quantity" type="number" min="1" class="form-control" value="1" style="width: 100px;" />
+                        </div>
+                        <div class="spacing"></div>
+                        <div>
+                            <button v-bind:data-id="@Model.Id" class="btn btn-success btn-lg btn-block" @@click="addToCart(item)">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-12">
+                <div class="spacing"></div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>Description</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>@(string.IsNullOrWhiteSpace(Model.LongDescription) ? Model.ShortDescription : Model.LongDescription)</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            
+
+            var cartApp = new Vue({
+                el: "#cartApp",
+                shoppingCartStore,
+                data: {
+                    cart: [],
+                    item: { id: @Model.Id, name: '@Model.Name', price: @Model.Price, quantity: 1 },
+                },
+                methods: {
+                    addToCart(item) {
+                        shoppingCartStore.commit('addToCart', item);
+                        shoppingCartStore.commit('saveCart');
+                    }
+                }
+            });
+        });
+    </script>
+}
