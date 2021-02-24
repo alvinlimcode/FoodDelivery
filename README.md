@@ -2,7 +2,7 @@
 A sample food delivery web app is developed using ASP.NET Core, bootstrap, jQuery, vue.js, and HTML localStorage. This project demo how to structure the solutions into different projects also.
 
 ## Getting Started
-The homepage demo loading the foods listing by calling ajax Web API in vue.js through the C# backend code. The data is stored in SQL Server and access using Entity Framework with LINQ. 
+The homepage demo loading the foods listing by calling ajax Web API in vue.js through the C# backend code. The data is stored in SQL Server and access using Entity Framework with Lambda expressions. 
 
 The frontend UI uses bootstrap3 CSS, vue.js and jQuery. The vue.js is vesatile, flexible and very good at controlling the UI logic with minimal code compare to jQuery.
 
